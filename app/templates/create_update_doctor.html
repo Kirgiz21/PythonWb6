@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+{% block content %}
+    <h1>{{ title }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        <p>{{ form.hidden_tag() }}</p>
+        <p>{{ form.first_name.label() }} {{ form.first_name() }}</p>
+        <p>{{ form.last_name.label() }} {{ form.last_name() }}</p>
+        <p>{{ form.middle_name.label() }} {{ form.middle_name() }}</p>
+        <p>{{ form.phone.label() }} {{ form.phone() }}</p>
+        <p>{{ form.email.label() }} {{ form.email() }}</p>
+        <p>{{ form.specialization.label() }} {{ form.specialization() }}</p>
+        <p>
+            {{ form.photo.label() }}<br>
+            {{ form.photo() }}
+        </p>
+        <p>{{ form.submit }}</p>
+    </form>
+{% endblock %}

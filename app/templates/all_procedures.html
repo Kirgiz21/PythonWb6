@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Усі процедури{% endblock title %}
+{% block content %}
+    <h1 class="display-2">Усі процедури</h1>
+    {% if procedures %}
+        {% for procedure in procedures %}
+            <div class="
+                {% if procedure.status == 'Прострочено' %}alert alert-danger
+                {% elif procedure.status == 'Підтверджено' %}alert alert-primary
+                {% elif procedure.status == 'Виконано' %}alert alert-success
+                {% else %}alert alert-dark
+                {% endif %}">
+                <h1><strong>
+                    {% for procedure_type in procedure.procedure_types %}
+                        {{ procedure_type }}
+                    {% endfor %}
+                </strong></h1>
+                <p><strong>Дата та час: </strong>{{ procedure.date_time }}</p>
+                <p><strong>Пацієнт: </strong>{{ procedure.user }}</p>
+                <p><strong>Доктор: </strong>{{ procedure.doctor }}</p>
+                <p><strong>Статус: </strong>{{ procedure.status }}</p>
+                {% if procedure.details %}
+                    <p><strong>Деталі: </strong>{{ procedure.details }}</p>
+                {% endif %}
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-outline-primary mx-3" href="{{ url_for('procedure_update', pk=procedure.pk) }}">Редагувати процедуру</a>
+                    <a class="btn btn-sm btn-outline-danger mx-3" href="{{ url_for('procedure_delete', pk=procedure.pk) }}">Видалити процедуру</a>
+                </div>
+            </div>
+            <br>
+      {% endfor %}
+    {% else %}
+      <p>Немає нічого (((</p>
+    {% endif %}
+{% endblock %}

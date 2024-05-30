@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Оновити користувача{% endblock title %}
+{% block content %}
+    <h1>Оновити користувача</h1>
+    <form method="post" enctype="multipart/form-data">
+        <p>{{ form.hidden_tag() }}</p>
+        <p>{{ form.first_name.label() }} {{ form.first_name() }}</p>
+        <p>{{ form.last_name.label() }} {{ form.last_name() }}</p>
+        <p>{{ form.middle_name.label() }} {{ form.middle_name() }}</p>
+        <p>{{ form.username.label() }} {{ form.username() }}</p>
+        <p>{{ form.email.label() }} {{ form.email() }}</p>
+        <p>{{ form.role.label() }} {{ form.role() }}</p>
+        <p>{{ form.submit }}</p>
+    </form>
+{% endblock %}

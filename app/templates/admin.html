@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Усі Користувачі{% endblock title %}
+{% block content %}
+    <h1 class="display-2">Користувачі</h1>
+    {% if users %}
+        {% for user in users %}
+            <div class="alert alert-dark">
+                <h1><strong>ПІБ: </strong>{{ user.last_name }} {{ user.first_name }} {{ user.middle_name }}</h1>
+                <p><strong>Електронна адреса: </strong>{{ user.email }}</p>
+                <p><strong>Роль: </strong>{{ user.role }}</p>
+                <p><strong>Створений: </strong>{{ user.created_on }}</p>
+                <p><strong>Оновлений: </strong>{{ user.update_on }}</p>
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-outline-primary mx-3" href="{{ url_for('user_update', pk=user.pk) }}">Редагувати користувача</a>
+                    <a class="btn btn-sm btn-outline-danger mx-3" href="{{ url_for('user_delete', pk=user.pk) }}">Видалити користувача</a>
+                </div>
+            </div>
+            <br>
+      {% endfor %}
+    {% else %}
+      <p>Немає нічого (((</p>
+    {% endif %}
+{% endblock %}

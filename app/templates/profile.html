@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Профіль{% endblock title %}
+{% block content %}
+    <h1 class="display-2">Профіль</h1>
+        <div class="alert alert-dark">
+            <h1><strong>ПІБ: </strong>{{ current_user.last_name }} {{ current_user.first_name }} {{ current_user.middle_name }}</h1>
+            <p><strong>Електронна адреса: </strong>{{ current_user.email }}</p>
+            <p><strong>Роль: </strong>{{ current_user.role }}</p>
+            <p><strong>Створений: </strong>{{ current_user.created_on }}</p>
+            <p><strong>Оновлений: </strong>{{ current_user.update_on }}</p>
+            <div class="btn-group">
+                <a class="btn btn-sm btn-outline-primary mx-3" href="{{ url_for('profile_update') }}">Редагувати</a>
+            </div>
+        </div>
+{% endblock %}

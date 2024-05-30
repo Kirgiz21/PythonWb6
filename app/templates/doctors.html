@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Лікарі{% endblock title %}
+{% block content %}
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <h1 class="display-2">Список лікарів</h1>
+            <div class="row">
+                {% if doctors %}
+                    {% for doctor in doctors %}
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+                                <img class="card-img-top" src="{{ url_for('static', filename='images/' + doctor.photo) }}" data-holder-rendered="true">
+                                <div class="card-body">
+                                    <p class="card-text">Лікар: <strong>{{ doctor.last_name }} {{ doctor.first_name }}</strong></p>
+                                    <p class="card-text">Спеціалізація: <strong>{{ doctor.specialization }}</strong></p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('doctor', pk=doctor.pk) }}">Детальніше</a>
+                                            {% if current_user.is_authenticated and (current_user.role.name == 'Адміністратор' or current_user.role.name == 'Супер адмін') %}
+                                                <a class="btn btn-sm btn-outline-primary" href="{{ url_for('doctor_update', pk=doctor.pk) }}">Змінити</a>
+                                                <a class="btn btn-sm btn-outline-danger" href="{{ url_for('doctor_delete', pk=doctor.pk) }}">Видалити</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Жодного доктора</p>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock content %}

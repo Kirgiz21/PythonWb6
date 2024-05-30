@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+{% block content %}
+    <h1>{{ title }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        <p>{{ form.hidden_tag() }}</p>
+        <p>{{ form.date_time.label() }} {{ form.date_time() }}</p>
+        <p>{{ form.doctor.label() }} {{ form.doctor() }}</p>
+        <p>{{ form.procedure_type.label() }} {{ form.procedure_type() }}</p>
+        <p>{{ form.details.label() }} {{ form.details() }}</p>
+        <p>{{ form.submit }}</p>
+    </form>
+{% endblock %}
